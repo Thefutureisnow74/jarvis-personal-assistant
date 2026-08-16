@@ -34,7 +34,10 @@ HUD is a `/today` in a costume, and you should say so rather than pretend it was
 | 5 | **HUD** | `scripts/hud.py` → local HTML on the second screen | — |
 | 6 | **Knowledge** | `scripts/brain.py` (vault + files) + `scripts/mail.py` (Gmail) | Unindexed brain = he answers "I have nothing on that" to everything. |
 
-Skill dir: `C:\Users\12149\.claude\skills\jarvis`. State lives in `~/.jarvis/`.
+Skill dir: `~/.claude/skills/jarvis` (`%USERPROFILE%\.claude\skills\jarvis` on
+Windows). State lives in `~/.jarvis/`. **Never hardcode an absolute user path in this
+file** — `install_jarvis.py` personalizes `~/.jarvis/config.json`, not this document,
+so anything written here literally is wrong on every machine but the author's.
 Ears: `jarvis-ears.cmd` (section D). Queued voice commands land in `~/.jarvis/inbox.jsonl`
 — **read that file at session start.**
 
@@ -55,8 +58,9 @@ one, flagged `stale: true`), and the `ObsiVault/hot.md` head. If `goals` is `nul
 stale by more than a day, **still run the full wake** — then close by asking King for
 tonight's top three, so tomorrow's briefing has a spine.
 
-Also read `c:\Users\12149\Documents\Hermes Agents\ObsiVault\hot.md` directly if the
-context script flags it as changed — that is the durable "what matters to King" layer.
+Also read the `hot_md` path from `~/.jarvis/config.json` directly if the context script
+flags it as changed — that is the durable "what matters to the owner" layer. The vault
+location is whatever the owner chose at install time; do not assume it.
 
 ### A2 — Read and REORGANIZE the calendar
 
@@ -99,7 +103,9 @@ python "$HOME/.claude/skills/jarvis/scripts/speak.py" --from-brief "$HOME/.jarvi
 `hud.py --open` paints the HUD and opens it. `speak.py` speaks the `spoken` field.
 
 **Voice rules — this is the character, get it right:**
-- Address him as **"sir"**. Butler register: dry, competent, unhurried.
+- Address the owner as **`owner_address` from `~/.jarvis/config.json`** — the installer
+  asks for this ("sir", "ma'am", a name, "boss") and `listen.ADDR` already reads it.
+  Butler register: dry, competent, unhurried.
 - Lead with what you *already did* ("I've gone ahead and organized your calendar"), not
   with what he should do.
 - One dry needle is allowed if the facts earn it ("you've been on that one a while").
@@ -227,7 +233,7 @@ Always hand over both links, labelled: localhost to *use* it, here.now to *see* 
 ## D. THE EARS — always-listening wake word
 
 ```cmd
-C:\Users\12149\.claude\skills\jarvis\jarvis-ears.cmd
+%USERPROFILE%\.claude\skills\jarvis\jarvis-ears.cmd
 ```
 
 Or `python scripts/listen.py`. It holds the microphone open, records 5-second windows,

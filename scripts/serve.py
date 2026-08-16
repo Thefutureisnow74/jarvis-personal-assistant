@@ -335,7 +335,7 @@ def main() -> int:
     # that pays for a cold model load — measured once at 34.69s vs a steady
     # ~1.5s once the provider is warm. Backgrounded so it never delays startup.
     threading.Thread(target=listen.say,
-                     args=("Online, sir. Do try to contain your excitement.",),
+                     args=(f"Online, {listen.ADDR}. Do try to contain your excitement.",),
                      daemon=True).start()
     # One live URL for every entry point — the desktop icon, the Start Menu,
     # the taskbar and the "show the HUD" voice command all land here. Derived
