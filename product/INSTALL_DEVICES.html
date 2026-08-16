@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>JARVIS — Install on Your Devices</title>
+<style>
+  :root{--surface:#05080d;--panel:#0a111a;--line:rgba(120,160,170,.14);
+    --ink:#dfe9e7;--ink2:#93a5a2;--ink3:#5c6b69;--teal:#3ad6c8;--teal2:#9ff0e6}
+  *{box-sizing:border-box;margin:0}
+  body{background:var(--surface);color:var(--ink);
+    font:15px/1.65 -apple-system,'Segoe UI',system-ui,sans-serif;padding:38px 18px 70px}
+  .wrap{max-width:720px;margin:0 auto}
+  .mono{font-family:Consolas,'Cascadia Mono',monospace}
+  h1{font-size:22px;letter-spacing:3px;color:var(--teal2);margin-bottom:6px}
+  .sub{color:var(--ink2);font-size:13.5px;margin-bottom:26px}
+  .req{border:1px solid var(--line);border-left:3px solid var(--teal);
+    background:var(--panel);border-radius:8px;padding:14px 16px;margin-bottom:30px;font-size:14px}
+  .req b{color:var(--teal2)}
+  h2{font-size:14px;letter-spacing:2.5px;color:var(--teal2);margin:34px 0 12px;
+    padding-bottom:6px;border-bottom:1px solid var(--line)}
+  ol{margin:0 0 8px 22px}
+  li{margin:9px 0}
+  .addr{display:inline-block;background:#0f1a26;border:1px solid var(--line);
+    border-radius:6px;padding:2px 10px;color:var(--teal2);font-family:Consolas,monospace;
+    font-size:14px}
+  .hint{color:var(--ink3);font-size:12.5px;margin:6px 0 0 22px}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:8px;
+    padding:16px 18px;margin-bottom:8px}
+  .tr{margin:10px 0}
+  .tr b{color:var(--ink);display:block;font-size:13.5px}
+  .tr span{color:var(--ink2);font-size:13px}
+  footer{color:var(--ink3);font-size:11.5px;margin-top:34px;border-top:1px solid var(--line);
+    padding-top:12px}
+</style></head><body>
+<div class="wrap">
+  <h1>JARVIS</h1>
+  <div class="sub">Putting your assistant on every screen — desktop and phone.</div>
+
+  <div class="req"><b>Before you start:</b> Jarvis lives on your computer. Your Jarvis setup
+  finished by showing you your personal address — it looks like
+  <span class="addr">http://YOUR-COMPUTER-IP:8787</span>. You'll use it below.
+  Your phone must be on the <b>same Wi-Fi network</b> as the computer, and the computer must be
+  awake — Jarvis sleeps when it does.</div>
+
+  <h2>DESKTOP — THE FULL DISPLAY</h2>
+  <ol>
+    <li>Your setup placed a <b>JARVIS</b> icon on your desktop and Start Menu — double-click it.</li>
+    <li>It opens as its own window: your briefing, your objectives, the voice panel, and the
+        living sphere of everything Jarvis knows.</li>
+    <li>Talk to it three ways: say <b>"Jarvis, …"</b> out loud, press the
+        <b>HANDS-FREE</b> button once and just speak, or type into the command box.</li>
+  </ol>
+
+  <h2>IPHONE</h2>
+  <ol>
+    <li>Open <b>Safari</b> (it must be Safari — Apple's rule, not ours).</li>
+    <li>Go to <span class="addr">http://YOUR-COMPUTER-IP:8787/phone</span></li>
+    <li>Tap the <b>Share</b> button — the square with the upward arrow, bottom center.</li>
+    <li>Scroll down and tap <b>"Add to Home Screen."</b></li>
+    <li>Tap <b>Add</b>. A JARVIS icon appears on your home screen.</li>
+  </ol>
+  <div class="hint">Tapping it opens full-screen: the sphere of your assistant's knowledge, live,
+  with the version it's running in the corner. Tap any name on the sphere to read that page.</div>
+
+  <h2>ANDROID</h2>
+  <ol>
+    <li>Open <b>Chrome</b>.</li>
+    <li>Go to <span class="addr">http://YOUR-COMPUTER-IP:8787/phone</span></li>
+    <li>Tap the <b>⋮ menu</b> (top right) → <b>"Add to Home Screen"</b> → <b>Add</b>.</li>
+  </ol>
+
+  <h2>IF SOMETHING WON'T LOAD</h2>
+  <div class="card">
+    <div class="tr"><b>"Can't connect" on the phone</b>
+      <span>The computer is asleep, or the phone left the Wi-Fi network. Wake the computer,
+      rejoin the network, try again.</span></div>
+    <div class="tr"><b>It loads but looks stale</b>
+      <span>Check the version number in the corner against your latest update note —
+      pull down to refresh, or close and reopen the app.</span></div>
+    <div class="tr"><b>Your computer's address changed</b>
+      <span>Home routers occasionally hand out a new address. Re-run the address step from
+      your setup guide, then re-add the home screen icon with the new one.</span></div>
+    <div class="tr"><b>Loads on the computer but never on the phone</b>
+      <span>Some routers isolate devices from each other ("AP isolation" or "guest network").
+      Turn that off for your main network, or contact support for the always-on option.</span></div>
+  </div>
+
+  <footer>JARVIS · The phone icon is a window, not a copy — your assistant, its memory and its
+  voice live on your computer, under your ownership. Updates appear automatically the next time
+  you open the app.</footer>
+</div>
+</body></html>
