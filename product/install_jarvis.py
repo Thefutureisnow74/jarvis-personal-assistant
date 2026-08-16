@@ -251,6 +251,14 @@ def make_icons() -> None:
 
 # --------------------------------------------------------------- 8-9. task + shortcuts
 
+# The interpreter that ran the installer — and therefore the one that actually has the
+# dependencies just installed. A bare "pythonw.exe" resolves through PATH, which on a
+# machine with another venv ahead of it (a different agent, conda, the Store alias)
+# points somewhere without those deps: the task registers fine and then silently never
+# starts. Reported from a real install where PATH led to an unrelated agent's venv.
+PYTHONW = str(Path(sys.executable).with_name("pythonw.exe"))
+
+
 def create_scheduled_task(cfg: dict) -> bool:
     """True on success. Registering a NEW scheduled task needs privileges an
     automated/sandboxed shell may not hold, even though starting or stopping
@@ -267,7 +275,7 @@ def create_scheduled_task(cfg: dict) -> bool:
     if cfg.get("mic_device"):
         args += f' --device "{cfg["mic_device"]}"'
     ps = f"""
-$action = New-ScheduledTaskAction -Execute "pythonw.exe" -Argument '{args}' -WorkingDirectory "{SCRIPTS_DIR}"
+$action = New-ScheduledTaskAction -Execute "{PYTHONW}" -Argument '{args}' -WorkingDirectory "{SCRIPTS_DIR}"
 $trigger = New-ScheduledTaskTrigger -AtLogOn
 $settings = New-ScheduledTaskSettingsSet -RestartCount 3 -RestartInterval (New-TimeSpan -Minutes 2) -AllowStartIfOnBatteries -DontStopIfGoingOnBatteries
 Unregister-ScheduledTask -TaskName "Jarvis Server" -Confirm:$false -ErrorAction SilentlyContinue
@@ -284,7 +292,7 @@ Start-ScheduledTask -TaskName "Jarvis Server"
         "common when an agent/automation runs the installer)")
     print(f"\n  Open a NORMAL PowerShell window (Start Menu -> type PowerShell -> Enter,\n"
           f"  do NOT run this through an AI agent's shell) and paste this one line:\n\n"
-          f'  $a=New-ScheduledTaskAction -Execute "pythonw.exe" -Argument \'{args}\' '
+          f'  $a=New-ScheduledTaskAction -Execute "{PYTHONW}" -Argument \'{args}\' '
           f'-WorkingDirectory "{SCRIPTS_DIR}"; $t=New-ScheduledTaskTrigger -AtLogOn; '
           f'Register-ScheduledTask -TaskName "Jarvis Server" -Action $a -Trigger $t '
           f'-Settings (New-ScheduledTaskSettingsSet -RestartCount 3 -RestartInterval '
